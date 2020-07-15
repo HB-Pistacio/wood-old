@@ -1,0 +1,5 @@
+bin
+bin-int
+vendor
+**/MakeFile
+.DS_Store
