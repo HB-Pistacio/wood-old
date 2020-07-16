@@ -1,8 +1,5 @@
 #pragma once
-
 #include "Wood/Events/Event.h"
-
-#include <sstream>
 
 namespace Wood {
 
@@ -17,7 +14,7 @@ class WindowResizeEvent : public Event {
   std::string ToString() const override {
     std::stringstream ss;
     ss << "WindowResizeEvent: (" << m_Width << ", " << m_Height << ")";
-    return ss.str(); 
+    return ss.str();
   }
 
   EVENT_CLASS_TYPE(WindowResize)

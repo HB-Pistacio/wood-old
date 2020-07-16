@@ -1,8 +1,8 @@
+#include "pchwd.h"
 #include "Wood/Application.h"
-
+#include "Wood/Log.h"
 #include "Wood/Events/Event.h"
 #include "Wood/Events/ApplicationEvent.h"
-#include "Wood/Log.h"
 
 namespace Wood {
 Application::Application() {}

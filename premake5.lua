@@ -16,6 +16,8 @@ project "Wood"
   targetdir ("bin/" .. outputDir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputDir .. "/%{prj.name}")
 
+  pchheader "pchwd.h"
+
   files {
     "%{prj.name}/src/**.h",
     "%{prj.name}/src/**.cpp"

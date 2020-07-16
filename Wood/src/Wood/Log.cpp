@@ -1,3 +1,4 @@
+#include "pchwd.h"
 #include "Log.h"
 
 namespace Wood {
@@ -14,4 +15,5 @@ void Log::Init() {
   s_CoreLogger->set_level(spdlog::level::trace);
   s_ClientLogger->set_level(spdlog::level::trace);
 }
+
 }  // namespace Wood

@@ -1,11 +1,7 @@
 #pragma once
 
+#include "pchwd.h"
 #include "spdlog/fmt/ostr.h"
-
-#include "Wood/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace Wood {
 // Events in Wood are currently blocking, meaning that as soon as an even fires
