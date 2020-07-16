@@ -2,4 +2,5 @@
 
 #include "Wood/Application.h"
 #include "Wood/Core.h"
+#include "Wood/Log.h"
 #include "Wood/Entrypoint.h"
