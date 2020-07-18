@@ -11,11 +11,11 @@ outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir['GLFW'] = "Wood/vendor/GLFW/include"
-IncludeDir['Glad'] = "Wood/vendor/Glad/include"
+IncludeDir['glad'] = "Wood/vendor/glad/include"
 
 -- Include premake file for GLFW project
 include "Wood/vendor/GLFW/premake5.lua"
-include "Wood/vendor/Glad/premake5.lua"
+include "Wood/vendor/glad/premake5.lua"
 
 project "Wood"
   kind "SharedLib"
@@ -36,7 +36,7 @@ project "Wood"
     "%{prj.name}/src",
     "%{prj.name}/vendor/spdlog/include",
     "%{IncludeDir.GLFW}",
-    "%{IncludeDir.Glad}"
+    "%{IncludeDir.glad}"
   }
 
   filter "system:macosx"
@@ -47,13 +47,12 @@ project "Wood"
     buildoptions {"-F /Library/Frameworks"}
     linkoptions {"-F /Library/Frameworks"}
 
-    links { "OpenGL.framework", "Cocoa.framework", "CoreFoundation.framework", "CoreVideo.framework","IOKit.framework", "GLFW", "Glad" }
+    links { "OpenGL.framework", "Cocoa.framework", "CoreFoundation.framework", "CoreVideo.framework","IOKit.framework", "GLFW", "glad" }
     
     defines {
       "WD_PLATFORM_MACOS",
       "WD_BUILD_DYLIB",
-      "WD_ENABLE_ASSERTS",
-      "GLFW_INCLUDE_NONE"
+      "WD_ENABLE_ASSERTS"
     }
 
     postbuildcommands {
@@ -95,7 +94,7 @@ project "Sandbox"
 
   filter "system:macosx"
     cppdialect "C++17"
-    staticruntime "Off"
+    staticruntime "On"
     systemversion "latest"
     
     defines {

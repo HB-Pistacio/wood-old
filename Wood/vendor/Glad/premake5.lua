@@ -1,4 +1,4 @@
-project "Glad"
+project "glad"
 	kind "StaticLib"
 	language "C"
 
@@ -7,8 +7,8 @@ project "Glad"
 
 	files
 	{
-    "include/glad/glad.h",
-    "include/khr/khrplatform.h",
+		"include/glad/glad.h",
+		"include/KHR/khrplatform.h",
     "src/glad.c",
   }
   

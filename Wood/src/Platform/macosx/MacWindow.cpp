@@ -7,8 +7,6 @@
 #include "Wood/Events/ApplicationEvent.h"
 #include "Wood/Events/MouseEvent.h"
 
-#include <glad/glad.h>
-
 namespace Wood {
 
 static bool s_GLFWInitialized = false;
@@ -37,6 +35,12 @@ void MacWindow::Init(const WindowProps& props) {
                props.Height);
   if (!s_GLFWInitialized) {
     int success = glfwInit();
+
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
     WD_CORE_ASSERT(success, "Could not initialize GLFW!");
 
     glfwSetErrorCallback(GLFWErrorCallback);
@@ -49,6 +53,7 @@ void MacWindow::Init(const WindowProps& props) {
 
   int gladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
   WD_CORE_ASSERT(gladStatus, "Could not initialize glad!");
+
   glfwSetWindowUserPointer(m_Window, &m_Data);
   SetVSync(true);
 
