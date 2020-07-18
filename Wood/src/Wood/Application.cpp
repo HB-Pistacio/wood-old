@@ -5,15 +5,16 @@
 #include "Wood/Events/ApplicationEvent.h"
 
 namespace Wood {
-Application::Application() {}
+Application::Application() {
+  m_Window = std::unique_ptr<Window>(Window::Create());
+}
+
 Application::~Application() {}
 
 void Application::Run() {
-  WindowResizeEvent e(1200, 720);
-  WD_TRACE(e);
-
-  while (true)
-    ;
+  while (m_Running) {
+    m_Window->OnUpdate();
+  }
 }
 
 }  // namespace Wood

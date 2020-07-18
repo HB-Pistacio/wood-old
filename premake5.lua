@@ -5,8 +5,15 @@
 workspace "Wood"
 architecture "x86_64"
 configurations { "Debug", "Release", "Dist" }
+toolset "gcc"
 
 outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+IncludeDir = {}
+IncludeDir['GLFW'] = "Wood/vendor/GLFW/include"
+
+-- Include premake file for GLFW project
+include "Wood/vendor/GLFW/premake5.lua"
 
 project "Wood"
   kind "SharedLib"
@@ -25,17 +32,24 @@ project "Wood"
 
   includedirs {
     "%{prj.name}/src",
-    "%{prj.name}/vendor/spdlog/include"
+    "%{prj.name}/vendor/spdlog/include",
+    "%{IncludeDir.GLFW}"
   }
 
   filter "system:macosx"
     cppdialect "C++17"
     staticruntime "On"
     systemversion "latest"
+
+    buildoptions {"-F /Library/Frameworks"}
+    linkoptions {"-F /Library/Frameworks"}
+
+    links { "OpenGL.framework", "Cocoa.framework", "CoreFoundation.framework", "CoreVideo.framework","IOKit.framework", "GLFW" }
     
     defines {
       "WD_PLATFORM_MACOS",
-      "WD_BUILD_DYLIB"
+      "WD_BUILD_DYLIB",
+      "WD_ENABLE_ASSERTS"
     }
 
     postbuildcommands {
