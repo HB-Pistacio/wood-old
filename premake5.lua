@@ -11,9 +11,11 @@ outputDir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir['GLFW'] = "Wood/vendor/GLFW/include"
+IncludeDir['Glad'] = "Wood/vendor/Glad/include"
 
 -- Include premake file for GLFW project
 include "Wood/vendor/GLFW/premake5.lua"
+include "Wood/vendor/Glad/premake5.lua"
 
 project "Wood"
   kind "SharedLib"
@@ -33,7 +35,8 @@ project "Wood"
   includedirs {
     "%{prj.name}/src",
     "%{prj.name}/vendor/spdlog/include",
-    "%{IncludeDir.GLFW}"
+    "%{IncludeDir.GLFW}",
+    "%{IncludeDir.Glad}"
   }
 
   filter "system:macosx"
@@ -44,12 +47,13 @@ project "Wood"
     buildoptions {"-F /Library/Frameworks"}
     linkoptions {"-F /Library/Frameworks"}
 
-    links { "OpenGL.framework", "Cocoa.framework", "CoreFoundation.framework", "CoreVideo.framework","IOKit.framework", "GLFW" }
+    links { "OpenGL.framework", "Cocoa.framework", "CoreFoundation.framework", "CoreVideo.framework","IOKit.framework", "GLFW", "Glad" }
     
     defines {
       "WD_PLATFORM_MACOS",
       "WD_BUILD_DYLIB",
-      "WD_ENABLE_ASSERTS"
+      "WD_ENABLE_ASSERTS",
+      "GLFW_INCLUDE_NONE"
     }
 
     postbuildcommands {

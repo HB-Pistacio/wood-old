@@ -7,6 +7,8 @@
 #include "Wood/Events/ApplicationEvent.h"
 #include "Wood/Events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace Wood {
 
 static bool s_GLFWInitialized = false;
@@ -44,6 +46,9 @@ void MacWindow::Init(const WindowProps& props) {
   m_Window = glfwCreateWindow((int)props.Width, (int)props.Height,
                               m_Data.Title.c_str(), nullptr, nullptr);
   glfwMakeContextCurrent(m_Window);
+
+  int gladStatus = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+  WD_CORE_ASSERT(gladStatus, "Could not initialize glad!");
   glfwSetWindowUserPointer(m_Window, &m_Data);
   SetVSync(true);
 
